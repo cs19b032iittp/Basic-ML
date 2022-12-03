@@ -1,7 +1,9 @@
 import torch
 import numpy as np
 import matplotlib.pyplot as plt
-
+from PIL import Image
+import torchvision.transforms as transforms
+  
 import torchvision.transforms.functional as F
 
 from torchvision.utils import make_grid
@@ -22,8 +24,10 @@ def show(imgs):
 
 def resize(image):
 
-  im = image
-  
+  im = Image.open(image)
+  transform = transforms.Compose([
+    transforms.PILToTensor()])
+  im = transform(im)
   boxes = torch.tensor([[210, 150, 350, 430]], dtype=torch.float)
   colors = ["yellow"]
   result = draw_bounding_boxes(im, boxes, colors=colors, width=5)
