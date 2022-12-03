@@ -32,7 +32,11 @@ def resize(image):
   colors = ["yellow"]
   result = draw_bounding_boxes(im, boxes, colors=colors, width=5)
   show(result)
+
+  transform = transforms.ToPILImage()
   print(type(result))
+
+  im = transform(result)
 
   return im
 
