@@ -25,6 +25,7 @@ def show(imgs):
 def resize(image):
 
   im = Image.open(image)
+  im = im.resize((500, 500))
   transform = transforms.Compose([
     transforms.PILToTensor()])
   im = transform(im)
