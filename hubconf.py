@@ -22,12 +22,13 @@ def show(imgs):
 
 def resize(image):
 
-  im = read_image(image)
+  im = image
   
   boxes = torch.tensor([[210, 150, 350, 430]], dtype=torch.float)
   colors = ["yellow"]
   result = draw_bounding_boxes(im, boxes, colors=colors, width=5)
   show(result)
+  print(type(result))
 
   return im
 
