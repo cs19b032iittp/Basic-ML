@@ -1,12 +1,48 @@
+import torch
+import numpy as np
+import matplotlib.pyplot as plt
+
+import torchvision.transforms.functional as F
+
+from torchvision.utils import make_grid
+from torchvision.io import read_image
+from torchvision.utils import draw_bounding_boxes
+
 from PIL import Image
+
+def show(imgs):
+    if not isinstance(imgs, list):
+        imgs = [imgs]
+    fig, axs = plt.subplots(ncols=len(imgs), squeeze=False)
+    for i, img in enumerate(imgs):
+        img = img.detach()
+        img = F.to_pil_image(img)
+        axs[0, i].imshow(np.asarray(img))
+        axs[0, i].set(xticklabels=[], yticklabels=[], xticks=[], yticks=[])
+
 def resize(image):
-  im = Image.open(image)
-  print(f"Original size : {im.size}")
-  im = im.resize((400, 400))
+
+  im = read_image(image)
+  
+  boxes = torch.tensor([[210, 150, 350, 430]], dtype=torch.float)
+  colors = ["yellow"]
+  result = draw_bounding_boxes(im, boxes, colors=colors, width=5)
+  show(result)
+
   return im
 
 
 
+# V2.0
+# from PIL import Image
+# def resize(image):
+#   im = Image.open(image)
+#   print(f"Original size : {im.size}")
+#   im = im.resize((400, 400))
+#   print("1")
+#   return im
+
+# V1.0
 # def resize(image):
 #   image = request.files['img']
 #   # image_path = "./images/" + image.filename
