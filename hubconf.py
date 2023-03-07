@@ -1,8 +1,8 @@
 from PIL import Image
 def resize(image):
   print(image)
-  # im = Image.open(image)
-  print(f"Original size : {image.size}")
+  im = Image.open(image)
+  print(f"Original size : {im.size}")
   image = image.resize((400, 400))
   return image
 
