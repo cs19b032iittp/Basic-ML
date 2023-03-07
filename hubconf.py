@@ -2,9 +2,9 @@ from PIL import Image
 def resize(image):
   print(image)
   # im = Image.open(image)
-  print(f"Original size : {im.size}")
-  im = im.resize((400, 400))
-  return im
+  print(f"Original size : {image.size}")
+  image = image.resize((400, 400))
+  return image
 
 
 
